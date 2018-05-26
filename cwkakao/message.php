@@ -198,7 +198,7 @@ echo <<< EOD
       }
 EOD;
     }else if($content == "중교 학사일정"){
-      /*$month = date("m");
+      $month = date("m");
       $result = mschedule($month);
       $out = $result[0].$result[1].$result[2].$result[3].$result[4].$result[5].$result[6].$result[7].$result[8].$result[9].$result[10].$result[11].$result[12].$result[13].$result[14].$result[15].$result[16].$result[17].$result[18].$result[19].$result[20].$result[21].$result[22].$result[23].$result[24].$result[25].$result[26].$result[28].$result[29].$result[30];
   echo <<< EOD
@@ -207,19 +207,6 @@ EOD;
         {
           "text" : "$month 월 학사일정표입니다. 오류 신고바랍니다.\\n$out"
 
-        },
-        "keyboard":
-        {
-          "type" : "buttons",
-          "buttons":["청원고", "청원여고", "청원중", "개발자", "버전정보"]
-        }
-      }
-EOD;*/
-echo <<< EOD
-      {
-        "message":
-        {
-          "text" : "2018.05.27 일요일 탑재 예정입니다. :)"
         },
         "keyboard":
         {
