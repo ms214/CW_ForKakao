@@ -1,5 +1,7 @@
 <?
   function mschedule($month){
+    //Copyright 2018. ms214 All Rights Reserved.
+    //http://blog.ms214.kr/
     $schedule = array();
     for($i = 0; $i<31; $i++){
       $schedule[$i] = $month."월".($i+1)."일 : ";
