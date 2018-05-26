@@ -27,14 +27,17 @@
         $final=preg_replace("/[0-9]/", "", $final);
         // 숫자 제거(정규식이용)
         $array_filter = array('.', ' ', '<tdclass="textC">', '</td>');
-        // 필터
+        // 필터"
         foreach ($array_filter as $filter) {
             $final=str_replace($filter, '', $final);
         } // 필터 내용 검색해 삭제
         $final=str_replace('<br/>', '\\n', $final); // br => 개행
         $final=substr($final, 0, -2); // 마지막 줄 개행문자 없애기
         if ( strcmp($final, '') == false ){
-          $final = "없습니다."; // 급식이 없을 경우
+          $final = "급식이 없습니다! 감사합니다:)"; // 급식이 없을 경우
+        }
+        if($date == "2018.07.05" || $date == "2018.07.06" || $date=="2018.07.08" || $date == "2018.07.09" || $date == "2018.07.10" || $date == "2018.07.07"){
+          $final = "기말고사 기간입니다! 열심히 공부하시고 좋은 성적 거두셨으면 좋겠습니다!";
         }
         $return = array($date, $final); // 해당날짜, 급식메뉴
         return $return;

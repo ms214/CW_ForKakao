@@ -33,7 +33,10 @@
       $final=str_replace('<br/>', '\\n', $final); // br => 개행
       $final=substr($final, 0, -2); // 마지막 줄 개행문자 없애기
       if ( strcmp($final, '') == false ){
-        $final = "없습니다."; // 급식이 없을 경우
+        $final = "급식이 없습니다! 감사합니다:)"; // 급식이 없을 경우
+      }
+      if($date == "2018.05.19" || $date == "2018.05.20" || $date=="2018.05.21" || $date == "2018.05.22"){
+        $final = "긴 연휴동안 급식대신 집에서 맛있는 것 많이 드시고 즐거운 마음으로 등교하시길 바랍니다. :)";
       }
       $return = array($date, $final); // 해당날짜, 급식메뉴
       return $return;
