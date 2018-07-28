@@ -6,7 +6,7 @@
     for($i = 0; $i<31; $i++){
       $schedule[$i] = $month."월".($i+1)."일 : ";
     }
-    if($month == "03"){
+    if($month == "3월"){
       $schedule[0] .="\\n";
       $schedule[1] .="입학식(1) 개학식(2,3)\\n";
       $schedule[2] .="\\n";
@@ -38,8 +38,9 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] .="\\n";
+      return $schedule;
     }//3월 if문 끝
-    if($month == "04"){
+    else if($month == "4월"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -71,8 +72,9 @@
       $schedule[28] .="\\n";
       $schedule[29] .="중간고사(2,3) \\n";
       $schedule[30] ="";
+      return $schedule;
     }
-    if($month == "05"){
+    else if($month == "5월"){
       $schedule[0] .= "중간고사(2,3) \\n";
       $schedule[1] .= "중간고사(2,3) \\n";
       $schedule[2] .= "\\n";
@@ -104,8 +106,9 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] .="\\n";
+      return $schedule;
     }//5월if문 끝
-    if($month =="06"){
+    else if($month =="6월"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -137,8 +140,9 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] ="";
+      return $schedule;
     }//6월 if문 끝
-    if($month == "07"){
+    else if($month == "7월"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -170,8 +174,9 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] .="\\n";
+      return $schedule;
     }//7월 if문 끝
-    if($month == "08"){
+    else if($month == "8월"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -203,8 +208,9 @@
       $schedule[28] .="수련활동\\n";
       $schedule[29] .="수련활동\\n";
       $schedule[30] .="수련활동\\n";
+      return $schedule;
     }//8월 if문 끝
-    if($month == "09"){
+    else if($month == "9월"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -236,8 +242,9 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] = "";
+      return $schedule;
     }//9월 if문 끝
-    if($month == "10"){
+    else if($month == "10월"){
       $schedule[0] .="\\n";
       $schedule[1] .="중간고사(2,3)\\n";
       $schedule[2] .="개천절 \\n";
@@ -269,8 +276,9 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] .="\\n";
+      return $schedule;
     }//10월 if문 끝
-    if($month == "11"){
+    else if($month == "11월"){
       $schedule[0] .="기말고사(3)\\n";
       $schedule[1] .="기말고사(3)\\n";
       $schedule[2] .="\\n";
@@ -302,8 +310,9 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] = "";
+      return $schedule;
     }//11월 if문 끝
-    if($month == "12"){
+    else if($month == "12월"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -335,8 +344,9 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] = "\\n";
+      return $schedule;
     }//12월 if문 끝
-    if($month == "01"){
+    else if($month == "1월"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -368,8 +378,9 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] = "\\n";
+      return $schedule;
     }//1월 if문 끝
-    if($month == "02"){
+    else if($month == "2월"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -401,7 +412,9 @@
       $schedule[28] ="";
       $schedule[29] ="";
       $schedule[30] ="";
+      return $schedule;
+    }else{
+      return "잘못된 입력입니다.";
     }
-    return $schedule;
   }
 ?>

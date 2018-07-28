@@ -4,9 +4,9 @@
     //http://blog.ms214.kr/
     $schedule = array();
     for($i = 0; $i<31; $i++){
-      $schedule[$i] = $month.($i+1)."일 : ";
+      $schedule[$i] = $month."월".($i+1)."일 : ";
     }
-    if($month == "3월"){
+    if($month == "03"){
       $schedule[0] .="\\n";
       $schedule[1] .="입학식(1)\\n";
       $schedule[2] .="\\n";
@@ -38,9 +38,8 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] .="\\n";
-      return $schedule;
     }//3월 if문 끝
-    if($month == "4월"){
+    if($month == "04"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -72,9 +71,8 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] ="";
-      return $schedule;
     }
-    if($month == "5월"){
+    if($month == "05"){
       $schedule[0] .= "\\n";
       $schedule[1] .= "\\n";
       $schedule[2] .= "\\n";
@@ -106,9 +104,8 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] .="\\n";
-      return $schedule;
     }//5월if문 끝
-    if($month =="6월"){
+    if($month =="06"){
       $schedule[0] .="자율활동\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -127,7 +124,7 @@
       $schedule[15] .="\\n";
       $schedule[16] .="\\n";
       $schedule[17] .="\\n";
-      $schedule[18].="\\n";
+      $schedule[18].="학업성취도평가 \\n";
       $schedule[19] .="\\n";
       $schedule[20] .="\\n";
       $schedule[21] .="동아리활동\\n";
@@ -140,9 +137,8 @@
       $schedule[28] .="자율활동\\n";
       $schedule[29] .="\\n";
       $schedule[30] ="";
-      return $schedule;
     }//6월 if문 끝
-    if($month == "7월"){
+    if($month == "07"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -174,9 +170,8 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] .="\\n";
-      return $schedule;
     }//7월 if문 끝
-    if($month == "8월"){
+    if($month == "08"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -208,9 +203,8 @@
       $schedule[28] .="\\n";
       $schedule[29] .="독서토론대회\\n";
       $schedule[30] .="자율활동\\n";
-      return $schedule;
     }//8월 if문 끝
-    if($month == "9월"){
+    if($month == "09"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -242,9 +236,8 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] = "";
-      return $schedule;
     }//9월 if문 끝
-    if($month == "10월"){
+    if($month == "10"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="개천절 \\n";
@@ -276,9 +269,8 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] .="\\n";
-      return $schedule;
     }//10월 if문 끝
-    if($month == "11월"){
+    if($month == "11"){
       $schedule[0] .="\\n";
       $schedule[1] .="자율활동\\n";
       $schedule[2] .="\\n";
@@ -310,9 +302,8 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] = "";
-      return $schedule;
     }//11월 if문 끝
-    if($month == "12월"){
+    if($month == "12"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -344,9 +335,8 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] = "\\n";
-      return $schedule;
     }//12월 if문 끝
-    if($month == "1월"){
+    if($month == "01"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -378,9 +368,8 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] = "\\n";
-      return $schedule;
     }//1월 if문 끝
-    if($month == "2월"){
+    if($month == "02"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -412,10 +401,7 @@
       $schedule[28] ="";
       $schedule[29] ="";
       $schedule[30] ="";
-      return $schedule;
     }
-    else{
-      return "잘못된 입력입니다.";
-    }
+    return $schedule;
   }
 ?>

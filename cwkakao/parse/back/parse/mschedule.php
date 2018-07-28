@@ -1,20 +1,20 @@
 <?
-  function ghschedule($month){
+  function mschedule($month){
     //Copyright 2018. ms214 All Rights Reserved.
     //http://blog.ms214.kr/
     $schedule = array();
     for($i = 0; $i<31; $i++){
-      $schedule[$i] = $month.($i+1)."일 : ";
+      $schedule[$i] = $month."월".($i+1)."일 : ";
     }
-    if($month == "3월"){
+    if($month == "03"){
       $schedule[0] .="\\n";
-      $schedule[1] .="입학식(1)\\n";
+      $schedule[1] .="입학식(1) 개학식(2,3)\\n";
       $schedule[2] .="\\n";
       $schedule[3] .="\\n";
       $schedule[4] .="\\n";
       $schedule[5] .="\\n";
       $schedule[6] .="\\n";
-      $schedule[7] .="전국연합학력평가\\n";
+      $schedule[7] .="\\n";
       $schedule[8] .="\\n";
       $schedule[9] .="\\n";
       $schedule[10] .="\\n";
@@ -38,9 +38,8 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] .="\\n";
-      return $schedule;
     }//3월 if문 끝
-    if($month == "4월"){
+    if($month == "04"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -51,7 +50,7 @@
       $schedule[7] .="\\n";
       $schedule[8] .="\\n";
       $schedule[9] .="\\n";
-      $schedule[10] .="전국연합학력평가(3) \\n";
+      $schedule[10] .="\\n";
       $schedule[11] .="\\n";
       $schedule[12] .="\\n";
       $schedule[13] .="\\n";
@@ -63,20 +62,19 @@
       $schedule[19] .="\\n";
       $schedule[20] .="\\n";
       $schedule[21] .="\\n";
-      $schedule[22] .="중간고사 \\n";
-      $schedule[23] .="중간고사 \\n";
-      $schedule[24] .="중간고사 \\n";
-      $schedule[25] .="중간고사 \\n";
+      $schedule[22] .="\\n";
+      $schedule[23] .="\\n";
+      $schedule[24] .="\\n";
+      $schedule[25] .="\\n";
       $schedule[26] .="\\n";
       $schedule[27] .="\\n";
       $schedule[28] .="\\n";
-      $schedule[29] .="\\n";
+      $schedule[29] .="중간고사(2,3) \\n";
       $schedule[30] ="";
-      return $schedule;
     }
-    if($month == "5월"){
-      $schedule[0] .= "\\n";
-      $schedule[1] .= "\\n";
+    if($month == "05"){
+      $schedule[0] .= "중간고사(2,3) \\n";
+      $schedule[1] .= "중간고사(2,3) \\n";
       $schedule[2] .= "\\n";
       $schedule[3] .= "\\n";
       $schedule[4] .= "어린이날\\n";
@@ -85,64 +83,62 @@
       $schedule[7] .= "\\n";
       $schedule[8] .= "\\n";
       $schedule[9] .= "개교기념일 \\n";
-      $schedule[10] .= "동아리활동\\n";
+      $schedule[10] .= "\\n";
       $schedule[11] .="\\n";
       $schedule[12] .="\\n";
       $schedule[13] .="\\n";
       $schedule[14] .="체험학습\\n";
       $schedule[15] .="\\n";
       $schedule[16] .="\\n";
-      $schedule[17] .="학생회장선거\\n";
+      $schedule[17] .="\\n";
       $schedule[18] .="\\n";
       $schedule[19] .="\\n";
       $schedule[20] .="재량휴업일\\n";
       $schedule[21] .="석가탄신일\\n";
       $schedule[22] .="\\n";
       $schedule[23] .="\\n";
-      $schedule[24] .="동아리활동\\n";
+      $schedule[24] .="\\n";
       $schedule[25] .="\\n";
       $schedule[26] .="\\n";
       $schedule[27] .="\\n";
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] .="\\n";
-      return $schedule;
     }//5월if문 끝
-    if($month =="6월"){
-      $schedule[0] .="자율활동\\n";
+    if($month =="06"){
+      $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
       $schedule[3] .="\\n";
       $schedule[4] .="\\n";
       $schedule[5] .="현충일\\n";
-      $schedule[6] .="수능모의평가(3)\\n";
-      $schedule[7] .="동아리활동\\n";
+      $schedule[6] .="\\n";
+      $schedule[7] .="\\n";
       $schedule[8] .="\\n";
       $schedule[9] .="\\n";
       $schedule[10] .="\\n";
-      $schedule[11] .="\\n";
+      $schedule[11] .="영어듣기\\n";
       $schedule[12] .="지방선거일 \\n";
       $schedule[13] .="\\n";
-      $schedule[14] .="자율활동\\n";
+      $schedule[14] .="\\n";
       $schedule[15] .="\\n";
       $schedule[16] .="\\n";
       $schedule[17] .="\\n";
-      $schedule[18].="\\n";
+      $schedule[18].="학업성취도평가 \\n";
       $schedule[19] .="\\n";
       $schedule[20] .="\\n";
-      $schedule[21] .="동아리활동\\n";
+      $schedule[21] .="\\n";
       $schedule[22] .="\\n";
       $schedule[23] .="\\n";
       $schedule[24] .="\\n";
       $schedule[25] .="\\n";
       $schedule[26] .="\\n";
       $schedule[27] .="\\n";
-      $schedule[28] .="자율활동\\n";
+      $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] ="";
-      return $schedule;
     }//6월 if문 끝
-    if($month == "7월"){
+    if($month == "07"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -153,9 +149,9 @@
       $schedule[7] .= "\\n";
       $schedule[8] .= "기말고사 \\n";
       $schedule[9] .= "기말고사 \\n";
-      $schedule[10] .= "전국연합학력평가(3) \\n";
+      $schedule[10] .= "\\n";
       $schedule[11] .="\\n";
-      $schedule[12] .="동아리활동\\n";
+      $schedule[12] .="\\n";
       $schedule[13] .="\\n";
       $schedule[14] .="\\n";
       $schedule[15] .="\\n";
@@ -174,9 +170,8 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] .="\\n";
-      return $schedule;
     }//7월 if문 끝
-    if($month == "8월"){
+    if($month == "08"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -193,115 +188,112 @@
       $schedule[13] .="\\n";
       $schedule[14] .="광복절 \\n";
       $schedule[15] .="\\n";
-      $schedule[16] .="학급정부회장선거\\n";
+      $schedule[16] .="\\n";
       $schedule[17] .="\\n";
       $schedule[18] .="\\n";
       $schedule[19] .="\\n";
       $schedule[20] .="\\n";
       $schedule[21] .="\\n";
       $schedule[22] .="\\n";
-      $schedule[23] .="동아리활동\\n";
+      $schedule[23] .="\\n";
       $schedule[24] .="\\n";
       $schedule[25] .="\\n";
       $schedule[26] .="\\n";
       $schedule[27] .="\\n";
-      $schedule[28] .="\\n";
-      $schedule[29] .="독서토론대회\\n";
-      $schedule[30] .="자율활동\\n";
-      return $schedule;
+      $schedule[28] .="수련활동\\n";
+      $schedule[29] .="수련활동\\n";
+      $schedule[30] .="수련활동\\n";
     }//8월 if문 끝
-    if($month == "9월"){
+    if($month == "09"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
       $schedule[3] .="\\n";
-      $schedule[4] .="전국연합학력평가 \\n";
+      $schedule[4] .="\\n";
       $schedule[5] .="\\n";
       $schedule[6] .="\\n";
-      $schedule[7] .="청원여울마당\\n";
+      $schedule[7] .="\\n";
       $schedule[8] .="\\n";
       $schedule[9] .="\\n";
       $schedule[10] .="\\n";
-      $schedule[11] .="수련회 및 수학여행\\n";
-      $schedule[12] .="수련회 및 수학여행\\n";
-      $schedule[13] .="수련회 및 수학여행\\n";
+      $schedule[11] .="\\n";
+      $schedule[12] .="\\n";
+      $schedule[13] .="\\n";
       $schedule[14] .="\\n";
       $schedule[15] .="\\n";
       $schedule[16] .="\\n";
       $schedule[17] .="\\n";
       $schedule[18] .="\\n";
       $schedule[19] .="\\n";
-      $schedule[20] .="자율활동\\n";
+      $schedule[20] .="\\n";
       $schedule[21] .="\\n";
       $schedule[22] .="\\n";
       $schedule[23] .="추석 연휴\\n";
       $schedule[24] .="추석 연휴\\n";
       $schedule[25] .="추석 연휴\\n";
       $schedule[26] .="\\n";
-      $schedule[27] .="동아리활동\\n";
+      $schedule[27] .="\\n";
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] = "";
-      return $schedule;
     }//9월 if문 끝
-    if($month == "10월"){
+    if($month == "10"){
       $schedule[0] .="\\n";
-      $schedule[1] .="\\n";
+      $schedule[1] .="중간고사(2,3)\\n";
       $schedule[2] .="개천절 \\n";
-      $schedule[3] .="\\n";
-      $schedule[4] .="자율활동\\n";
+      $schedule[3] .="중간고사(2,3)\\n";
+      $schedule[4] .="중간고사(2,3)\\n";
       $schedule[5] .="\\n";
       $schedule[6] .="\\n";
-      $schedule[7] .="중간고사 \\n";
+      $schedule[7] .="\\n";
       $schedule[8] .="한글날\\n";
-      $schedule[9] .="중간고사\\n";
-      $schedule[10] .="중간고사\\n";
-      $schedule[11] .="중간고사\\n";
+      $schedule[9] .="\\n";
+      $schedule[10] .="\\n";
+      $schedule[11] .="\\n";
       $schedule[12] .="\\n";
       $schedule[13] .="\\n";
       $schedule[14] .="\\n";
-      $schedule[15] .="전국연합학력평가(3)\\n";
-      $schedule[16] .="\\n";
+      $schedule[15] .="\\n";
+      $schedule[16] .="영어듣기\\n";
       $schedule[17] .="\\n";
-      $schedule[18] .="자율활동\\n";
+      $schedule[18] .="\\n";
       $schedule[19] .="\\n";
       $schedule[20] .="\\n";
       $schedule[21] .="\\n";
       $schedule[22] .="\\n";
       $schedule[23] .="\\n";
       $schedule[24] .="\\n";
-      $schedule[25] .="동아리활동\\n";
+      $schedule[25] .="\\n";
       $schedule[26] .="\\n";
       $schedule[27] .="\\n";
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] .="\\n";
-      return $schedule;
     }//10월 if문 끝
-    if($month == "11월"){
-      $schedule[0] .="\\n";
-      $schedule[1] .="자율활동\\n";
+    if($month == "11"){
+      $schedule[0] .="기말고사(3)\\n";
+      $schedule[1] .="기말고사(3)\\n";
       $schedule[2] .="\\n";
       $schedule[3] .="\\n";
-      $schedule[4] .="\\n";
-      $schedule[5] .="\\n";
+      $schedule[4] .="기말고사(3)\\n";
+      $schedule[5] .="기말고사(3)\\n";
       $schedule[6] .="\\n";
       $schedule[7] .="\\n";
-      $schedule[8] .="동아리활동\\n";
+      $schedule[8] .="\\n";
       $schedule[9] .="\\n";
       $schedule[10] .="\\n";
       $schedule[11] .="\\n";
       $schedule[12] .="\\n";
-      $schedule[13] .= "수능예비소집일 \\n";
+      $schedule[13] .= "\\n";
       $schedule[14] .="대학수학능력시험 \\n";
-      $schedule[15] .="자율활동\\n";
+      $schedule[15] .="\\n";
       $schedule[16] .="\\n";
       $schedule[17] .="\\n";
-      $schedule[18] .="기말고사(3)\\n";
-      $schedule[19] .="기말고사(3)\\n";
-      $schedule[20] .="기말고사(3), 전국연합학력평가(1,2)\\n";
-      $schedule[21] .="기말고사(3)\\n";
-      $schedule[22] .="기말고사(3)\\n";
+      $schedule[18] .="\\n";
+      $schedule[19] .="\\n";
+      $schedule[20] .="\\n";
+      $schedule[21] .="\\n";
+      $schedule[22] .="\\n";
       $schedule[23] .="\\n";
       $schedule[24] .="\\n";
       $schedule[25] .="\\n";
@@ -310,30 +302,29 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] = "";
-      return $schedule;
     }//11월 if문 끝
-    if($month == "12월"){
+    if($month == "12"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
       $schedule[3] .="\\n";
       $schedule[4] .="\\n";
       $schedule[5] .="\\n";
-      $schedule[6] .="자율활동\\n";
+      $schedule[6] .="\\n";
       $schedule[7] .="\\n";
       $schedule[8] .="\\n";
-      $schedule[9] .="기말고사(1,2) \\n";
-      $schedule[10] .="기말고사(1,2) \\n";
-      $schedule[11] .="기말고사(1,2) \\n";
-      $schedule[12] .="기말고사(1,2) \\n";
-      $schedule[13] .="동아리활동\\n";
+      $schedule[9] .="\\n";
+      $schedule[10] .="기말고사(2) \\n";
+      $schedule[11] .="기말고사(2) \\n";
+      $schedule[12] .="기말고사(2) \\n";
+      $schedule[13] .="기말고사(2) \\n";
       $schedule[14] .="\\n";
       $schedule[15] .="\\n";
-      $schedule[16] .="졸업사정회\\n";
+      $schedule[16] .="\\n";
       $schedule[17] .="\\n";
       $schedule[18] .="\\n";
       $schedule[19] .="\\n";
-      $schedule[20] .="봉사활동\\n";
+      $schedule[20] .="\\n";
       $schedule[21] .="\\n";
       $schedule[22] .="\\n";
       $schedule[23] .="\\n";
@@ -344,9 +335,8 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] = "\\n";
-      return $schedule;
     }//12월 if문 끝
-    if($month == "1월"){
+    if($month == "01"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -378,9 +368,8 @@
       $schedule[28] .="\\n";
       $schedule[29] .="\\n";
       $schedule[30] = "\\n";
-      return $schedule;
     }//1월 if문 끝
-    if($month == "2월"){
+    if($month == "02"){
       $schedule[0] .="\\n";
       $schedule[1] .="\\n";
       $schedule[2] .="\\n";
@@ -412,10 +401,7 @@
       $schedule[28] ="";
       $schedule[29] ="";
       $schedule[30] ="";
-      return $schedule;
     }
-    else{
-      return "잘못된 입력입니다.";
-    }
+    return $schedule;
   }
 ?>
