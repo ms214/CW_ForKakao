@@ -11,12 +11,10 @@
   include('./parse/hschedule.php');//남고학사일정
   include('./parse/ghschedule.php');//여고학사일정
   include('./parse/mschedule.php');//중교학사일정
-  include('./timetable/hs.php');//남고시간표
-  include('./timetable/ghs.php');//여고시간표
-  include('./timetable/msch.php');//중교시간표
 
-  $ret = firstdb($user_key);
+  //$ret = firstdb($user_key);
   $school;
+  ckhistory($user_key);
   if($ret == 0){
     $school = selectSchool($user_key);
   }
@@ -33,12 +31,13 @@
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "개발자", "버전정보"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
           }
         }
 EOD;
       }else if($return==1){
         $result=insertuserkey($user_key);
+        uphistory($user_key, "초기학교");
         echo <<< EOD
         {
           "message":
@@ -54,7 +53,7 @@ EOD;
 EOD;
       }
 }//시작하기 끝
-else if(strpos($content, "학교")){
+else if(strpos($content, "학교") && selecthistory($user_key)=="초기학교"){
   switch ($content){
     case "청원고등학교":
       insertSchool($user_key, "청원고");
@@ -79,7 +78,8 @@ else if(strpos($content, "학교")){
     }
   }
 EOD;
-}else if(strpos($content, "학년")){
+uphistory($user_key, "초기 학년");
+}else if(strpos($content, "학년") && selecthistory($user_key)=="초기 학년"){
   switch ($content){
     case "1학년":
       insertGrade($user_key, "1학년");
@@ -104,7 +104,8 @@ EOD;
     }
   }
 EOD;
-}else if(strpos($content, "반")){
+uphistory($user_key, "초기반");
+}else if(strpos($content, "반") && selecthistory($user_key) == "초기반"){
   switch ($content){
     case "1반":
       insertClass($user_key, "1반");
@@ -165,7 +166,7 @@ EOD;
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "개발자", "버전정보"]
+          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
         }
       }
 EOD;
@@ -210,21 +211,21 @@ EOD;
         }
       }';
     }//각 학교별 메뉴
-    else if($content == "개발자"){
+    else if($content == "Copyright"){
         echo <<< EOD
         {
           "message":
           {
-            "text" : "21412김민수 \\n개발자에게 문의사항 및 개선사항은 ms214@ms214.kr 혹은 1:1 상담기능을 통해 알려주시기 바랍니다:)"
+            "text" : "Copyright 2017-2018. 김민수 \\nAll Rights Reserved. \\n기타 도움: 여준호(급식파싱)"
           },
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "개발자", "버전정보"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
           }
         }
 EOD;
-    }//개발자 끝
+    }//Copyright 끝
       else if($content == "메인으로" || $content == "수정취소하기" || $content == "아니오"){
         echo <<< EOD
         {
@@ -235,7 +236,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "개발자", "버전정보"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
           }
         }
 EOD;
@@ -265,7 +266,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "개발자", "버전정보"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
           }
         }
 EOD;
@@ -281,7 +282,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "개발자", "버전정보"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
           }
         }
 EOD;
@@ -297,7 +298,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "개발자", "버전정보"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
           }
         }
 EOD;
@@ -313,37 +314,40 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "개발자", "버전정보"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
           }
         }
 EOD;
     }//내일 석식 끝
     else if($content == "남고 학사일정"){
+      uphistory($user_key, $content);//명령어history저장
 echo <<< EOD
       {
         "message":
         {
-          "text" : "몇월의 학사일정이 필요합니까? 다음예시의 형식으로 입력해 주세요(ex. 남고 7월)"
+          "text" : "몇월의 학사일정이 필요합니까? \\n(ex. 9월)"
         }
       }
 EOD;
     }//남고 학사일정 끝
     else if($content == "여고 학사일정"){
+      uphistory($user_key, $content);//명령어history저장
       echo <<< EOD
             {
               "message":
               {
-                "text" : "몇월의 학사일정이 필요합니까? 다음예시의 형식으로 입력해 주세요(ex. 여고 7월)"
+                "text" : "몇월의 학사일정이 필요합니까? \\n(ex. 9월)"
               }
             }
 EOD;
     }//여고 학사일정 끝
     else if($content == "중교 학사일정"){
+      uphistory($user_key, $content);
       echo <<< EOD
             {
               "message":
               {
-                "text" : "몇월의 학사일정이 필요합니까? 다음예시의 형식으로 입력해 주세요(ex. 중교 7월)"
+                "text" : "몇월의 학사일정이 필요합니까? \\n(ex. 9월)"
               }
             }
 EOD;
@@ -400,7 +404,7 @@ EOD;
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "개발자", "버전정보"]
+          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
         }
       }
 EOD;
@@ -508,10 +512,26 @@ EOD;
 EOD;
         }
       }//요일분류
-    else if(strpos($content, "월") !== false){
-      if(strpos($content, "남고") !== false){
-        $month = mb_substr($content, 3,4);
-        $result = hschedule($month);
+      else if(strpos($content, "월") !== false){
+        $month = mb_substr($content, 0,3);
+        $gethistory = selecthistory($user_key);
+        $result;
+        $sc;
+        if($gethistory == "남고 학사일정"){
+            $result = hschedule($month);
+        }else if($gethistory == "여고 학사일정"){
+          $result = ghschedule($month);
+        }else if($gethistory == "중교 학사일정"){
+          $result = mschedule($month);
+        }
+
+        if($school == "청원고"){
+          $sc = "남고";
+        }else if($school == "청원여고"){
+          $sc = "여고";
+        }else if($school == "청원중"){
+          $sc = "중교";
+        }
         $out = $result[0].$result[1].$result[2].$result[3].$result[4].$result[5].$result[6].$result[7].$result[8].$result[9].$result[10].$result[11].$result[12].$result[13].$result[14].$result[15].$result[16].$result[17].$result[18].$result[19].$result[20].$result[21].$result[22].$result[23].$result[24].$result[25].$result[26].$result[28].$result[29].$result[30]."오류 신고바랍니다.";
         echo <<< EOD
         {
@@ -523,62 +543,11 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons":["남고 학사일정", "남고 학급별 시간표", "남고 등교시간", "메인으로"]
+            "buttons":["$sc 학사일정", "$sc 학급별 시간표", "$sc 등교시간", "메인으로"]
           }
         }
 EOD;
-      }else if(strpos($content, "여고") !== false){
-        $month = mb_substr($content, 3,4);
-        $result = ghschedule($month);
-        $out = $result[0].$result[1].$result[2].$result[3].$result[4].$result[5].$result[6].$result[7].$result[8].$result[9].$result[10].$result[11].$result[12].$result[13].$result[14].$result[15].$result[16].$result[17].$result[18].$result[19].$result[20].$result[21].$result[22].$result[23].$result[24].$result[25].$result[26].$result[28].$result[29].$result[30]."오류 신고바랍니다.";
-  echo <<< EOD
-        {
-          "message":
-          {
-            "text" : "$month 학사일정표입니다.\\n$out"
-
-          },
-          "keyboard":
-          {
-            "type" : "buttons",
-            "buttons":["여고 학사일정", "여고 학급별 시간표", "여고 등교시간", "메인으로"]
-          }
-        }
-EOD;
-      }else if(strpos($content, "중교") !== false){
-        $month = mb_substr($content, 3,4);
-        $result = mschedule($month);
-        $out = $result[0].$result[1].$result[2].$result[3].$result[4].$result[5].$result[6].$result[7].$result[8].$result[9].$result[10].$result[11].$result[12].$result[13].$result[14].$result[15].$result[16].$result[17].$result[18].$result[19].$result[20].$result[21].$result[22].$result[23].$result[24].$result[25].$result[26].$result[28].$result[29].$result[30]."오류 신고바랍니다.";
-    echo <<< EOD
-        {
-          "message":
-          {
-            "text" : "$month 학사일정표입니다.\\n$out"
-
-          },
-          "keyboard":
-          {
-            "type" : "buttons",
-            "buttons":["중교 학사일정", "중교 학급별 시간표", "중교 등교시간", "메인으로"]
-          }
-        }
-EOD;
-      }else{
-          echo <<< EOD
-          {
-            "message":
-            {
-              "text" : "잘못입력하셨습니다. 메인으로 돌아갑니다."
-            },
-            "keyboard":
-            {
-              "type" : "buttons",
-              "buttons": ["급식식단", "$school", "마이페이지", "개발자", "버전정보"]
-            }
-          }
-EOD;
-    }
-  }//학사일정 끝
+    }//학사일정 끝
   else if($content == "마이페이지"){
 
     $school = selectSchool($user_key);
@@ -632,11 +601,35 @@ EOD;
 EOD;
   }//수정하기 끝
   else if($content == "학교 수정"){
+    uphistory($user_key, $content);
     echo <<< EOD
     {
       "message":
       {
-        "text" : "웹사이트를 통한 수정기능제공 예정입니다. 빠른시일내에게 개발하겠습니다. \\n마이페이지로 돌아갑니다."
+        "text" : "현재 학교는 $school 입니다. 어디로 변경하시겠습니까?"
+      },
+      "keyboard":
+      {
+        "type" : "buttons",
+        "buttons": ["청원고등학교", "청원여자고등학교", "청원중학교", "메인으로"]
+      }
+    }
+EOD;
+  }//학교수정하기
+  else if(strpos($content, "학교") && selecthistory($user_key) == "학교 수정"){
+    if($content == "청원고등학교"){
+      insertSchool($user_key, "청원고");
+    }else if($content == "청원여자고등학교"){
+      insertSchool($user_key, "청원여고");
+    }else if($content == "청원중학교"){
+      insertSchool($user_key, "청원중");
+    }
+    $school = selectSchool($user_key);
+    echo <<< EOD
+    {
+      "message":
+      {
+        "text" : "소속학교를 $school 로 수정완료하였습니다."
       },
       "keyboard":
       {
@@ -645,7 +638,7 @@ EOD;
       }
     }
 EOD;
-  }//학교수정하기
+  }//수정완료 보내기
   else if($content == "학년 수정"){
     echo <<< EOD
     {
@@ -717,7 +710,7 @@ EOD;
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "개발자", "버전정보"]
+          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
         }
       }
 EOD;
@@ -742,7 +735,7 @@ EOD;
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "학교별 메뉴", "개발자", "버전정보"]
+          "buttons": ["급식식단", "학교별 메뉴", "Copyright", "버전정보"]
         }
       }
 EOD;

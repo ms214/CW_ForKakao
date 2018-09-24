@@ -15,9 +15,36 @@ mysqli_query($connect, $q1);
     $row =  mysqli_fetch_assoc($result);
     //$row = mysqli_fetch_array($result)
     if(!$row){
-        $i=1;
+        $i=1;//데이터 없음
       }
     return $i;// $i==0일때 데이터 있음/$i==1일때 데이터 없음
+  }
+
+  function ckhistory($userkey){
+    $query = "SELECT * FROM history where user_key = '$userkey'";
+    $conn = $GLOBALS['connect'];
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    if(!$row){
+      $query = "INSERT INTO history (user_key, history) VALUES ('$userkey', '')";
+      $conn = $GLOBALS['connect'];
+      $result = mysqli_query($conn, $query);
+    }
+  }
+
+  function uphistory($userkey, $history){
+    $query = "UPDATE history SET history = '$history' WHERE user_key = '$userkey'";
+    $conn = $GLOBALS['connect'];
+    $result = mysqli_query($conn, $query);
+  }
+
+  function selecthistory($userkey){
+    $query = "SELECT history FROM history WHERE user_key = '$userkey'";
+    $conn = $GLOBALS['connect'];
+    $result = mysqli_query($conn, $query);
+    while($row = mysqli_fetch_array($result)){
+        return $row['history'];
+    }
   }
 
   function insertuserkey($userkey){
@@ -77,15 +104,11 @@ mysqli_query($connect, $q1);
     $query = "SELECT * FROM timetable";
     $conn = $GLOBALS['connect'];
     $result = mysqli_query($conn, $query);
-    $temp = "없음";
-    $return = "";
+    $return = "저장된 시간표가 없습니다. 다음링크를 통해서 시간표를 등록해 주세요! \\nhttps://goo.gl/forms/Gtj9VzjOsYuIK11u2 ";
     while($row = mysqli_fetch_array($result)){
       if($school==$row['school'] && $grade==$row['grade'] && $class==$row['class'] && $day==$row['day']){
-        $temp = $row['timetable'];
+        $return = $row['timetable'];
       }
-    }
-    if(empty($return)){
-      $return = "본인 학급의 시간표가 등록되어있지 않습니다. 다음 링크를 통해 등록해 주시기 바랍니다. \nhttps://goo.gl/forms/Gtj9VzjOsYuIK11u2";
     }
     return $return;
   }//시간표 데이터베이스 통해
