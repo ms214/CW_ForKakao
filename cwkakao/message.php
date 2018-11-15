@@ -11,6 +11,7 @@
   include('./parse/hschedule.php');//남고학사일정
   include('./parse/ghschedule.php');//여고학사일정
   include('./parse/mschedule.php');//중교학사일정
+  include('./parse/Egg.php');
 
   //$ret = firstdb($user_key);
   $school;
@@ -22,19 +23,21 @@
   if($content == "시작하기"){
     $return = firstdb($user_key);
     if($return == 0){
-        echo <<< EOD
+      //아이디 존재 유무에 따라 실행
+      echo <<< EOD
+      {
+        "message":
         {
-          "message":
-          {
-            "text" : "청원 생활알리미 봇을 시작합니다. 이용중 문의사항 및 개선사항은 ms214@ms214.kr 이나 상담원을 통해 알려주시면 신속하게 반영하도록 하겠습니다. 감사합니다 :)"
-          },
-          "keyboard":
-          {
-            "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
-          }
+          "text" : "청원 생활알리미 봇을 시작합니다. 이용중 문의사항 및 개선사항은 ms214@ms214.kr 이나 상담원을 통해 알려주시면 신속하게 반영하도록 하겠습니다. 감사합니다 :)"
+        },
+        "keyboard":
+        {
+          "type" : "buttons",
+          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
         }
+      }
 EOD;
+      }
       }else if($return==1){
         $result=insertuserkey($user_key);
         uphistory($user_key, "초기학교");
@@ -51,8 +54,7 @@ EOD;
           }
         }
 EOD;
-      }
-}//시작하기 끝
+      }//시작하기 끝
 else if(strpos($content, "학교") && selecthistory($user_key)=="초기학교"){
   switch ($content){
     case "청원고등학교":
@@ -161,12 +163,12 @@ uphistory($user_key, "초기반");
       {
         "message":
         {
-          "text" : "모든 정보 입력을 완료하였습니다. \\n메인메뉴입니다."
+          "text" : "회원정보를 모두 입력하였습니다. 메인으로 돌아갑니다."
         },
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
+          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
         }
       }
 EOD;
@@ -221,7 +223,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
           }
         }
 EOD;
@@ -236,7 +238,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
           }
         }
 EOD;
@@ -251,11 +253,11 @@ EOD;
         "keyboard":
         {
           "type" : "buttons",
-          "buttons":["오늘 중식", "오늘 석식", "내일 중식", "내일 석식", "메인으로"]
+          "buttons":["오늘 중식", "오늘 석식", "내일 중식", "내일 석식", "모레 중식", "모레 석식", "메인으로"]
         }
       }';
     }//급식식단 끝
-    else if($content == "오늘 중식"){
+    else if($content == "오늘 중식" || $content == "오늘 점심"){
         $meal = lfmeal(0);
         echo <<< EOD
         {
@@ -266,12 +268,12 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
           }
         }
 EOD;
     }//오늘 중식 끝
-    else if($content == "오늘 석식"){
+    else if($content == "오늘 석식" || $content == "오늘 저녁"){
         $meal = dfmeal(0);
         echo <<< EOD
         {
@@ -282,12 +284,12 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
           }
         }
 EOD;
     }//오늘 석식 끝
-    else if($content == "내일 중식"){
+    else if($content == "내일 중식" || $content == "내일 점심"){
         $meal = lfmeal(1);
         echo <<< EOD
         {
@@ -298,12 +300,12 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
           }
         }
 EOD;
-    }//오늘 중식 끝
-    else if($content == "내일 석식"){
+    }//내일 중식 끝
+    else if($content == "내일 석식" || $content == "내일 저녁"){
         $meal = dfmeal(1);
         echo <<< EOD
         {
@@ -314,11 +316,43 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
           }
         }
 EOD;
     }//내일 석식 끝
+    else if($content == "모레 중식" || $content == "모레 점심"){
+      $meal = lfmeal(2);
+      echo <<< EOD
+      {
+        "message":
+        {
+          "text" : "$meal[0] \\n$meal[1]"
+        },
+        "keyboard":
+        {
+          "type" : "buttons",
+          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
+        }
+      }
+EOD;
+    }//모레 중식 끝
+    else if($content == "모레 석식" || $content == "모레 저녁"){
+      $meal = dfmeal(2);
+      echo <<< EOD
+      {
+        "message":
+        {
+          "text" : "$meal[0] \\n$meal[1]"
+        },
+        "keyboard":
+        {
+          "type" : "buttons",
+          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
+        }
+      }
+EOD;
+    }//모레 석식 끝
     else if($content == "남고 학사일정"){
       uphistory($user_key, $content);//명령어history저장
 echo <<< EOD
@@ -399,12 +433,12 @@ EOD;
       {
         "message":
         {
-          "text" : "현재 버전 : 2.1 \\n 청원 생활알리미는 청원학생들과 함께 만들어집니다! \\n 건의사항은 ms214@ms214.kr 이나 1:1 상담기능을 통해 알려주세요!"
+          "text" : "현재 버전 : 2.4 \\n 청원 생활알리미는 청원학생들과 함께 만들어집니다! \\n 건의사항은 ms214@ms214.kr 이나 1:1 상담기능을 통해 알려주세요!\\n\\n*이번버전 업데이트 내역*\\n -아이디/이름 입력을 입력하시지 않으셔도 청원생활알리미를 이용할 수 있습니다!"
         },
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
+          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
         }
       }
 EOD;
@@ -549,15 +583,11 @@ EOD;
 EOD;
     }//학사일정 끝
   else if($content == "마이페이지"){
-
-    $school = selectSchool($user_key);
-    $grade = selectGrade($user_key);
-    $class = selectClass($user_key);
     echo <<< EOD
     {
       "message":
       {
-        "text" : "$school $grade $class 학생의 마이페이지 입니다. 무엇을 선택하시겠습니까?"
+        "text" : "회원님 반갑습니다. \\n무엇을 선택하시겠습니까?"
       },
       "keyboard":
       {
@@ -575,7 +605,7 @@ EOD;
     {
       "message":
       {
-        "text" : "$school \\n'$grade'\\n'$class'"
+        "text" : "전체회원내역입니다. \\n학교: $school \\n학년: $grade\\n반: $class"
       },
       "keyboard":
       {
@@ -617,6 +647,7 @@ EOD;
 EOD;
   }//학교수정하기
   else if(strpos($content, "학교") && selecthistory($user_key) == "학교 수정"){
+    $schooltemp = selectSchool($user_key);
     if($content == "청원고등학교"){
       insertSchool($user_key, "청원고");
     }else if($content == "청원여자고등학교"){
@@ -629,7 +660,7 @@ EOD;
     {
       "message":
       {
-        "text" : "소속학교를 $school 로 수정완료하였습니다."
+        "text" : "소속학교를 '$schooltemp'에서 '$school'(으)로 수정완료하였습니다."
       },
       "keyboard":
       {
@@ -640,35 +671,75 @@ EOD;
 EOD;
   }//수정완료 보내기
   else if($content == "학년 수정"){
+    uphistory($user_key, $content);
+    $grade = selectGrade($user_key);
     echo <<< EOD
     {
       "message":
       {
-        "text" : "웹사이트를 통한 수정기능제공 예정입니다. 빠른시일내에게 개발하겠습니다. \\n마이페이지로 돌아갑니다."
+        "text" : "현재 $grade 입니다. 몇학년으로 변경하시겠습니까?"
       },
       "keyboard":
       {
         "type" : "buttons",
-        "buttons": ["전체내역 조회", "수정하기", "내 정보 지우기", "메인으로"]
+        "buttons": ["1학년", "2학년", "3학년", "메인으로"]
       }
     }
 EOD;
   }//학년 수정 끝
-  else if($content == "반 수정"){
+  else if(strpos($content, "학년") && selecthistory($user_key)=="학년 수정"){
+    $gradetemp = selectGrade($user_key);
+    insertGrade($user_key, $content);
+    $grade = selectGrade($user_key);
     echo <<< EOD
     {
       "message":
       {
-        "text" : "웹사이트를 통한 수정기능제공 예정입니다. 빠른시일내에게 개발하겠습니다. \\n마이페이지로 돌아갑니다."
+        "text" : "소속학년을 '$gradetemp'에서 '$grade'(으)로 변경하였습니다."
       },
       "keyboard":
       {
         "type" : "buttons",
-        "buttons": ["전체내역 조회", "수정하기", "내 정보 지우기", "메인으로"]
+        "buttons" : ["전체내역 조회", "수정하기", "내 정보 지우기", "메인으로"]
+      }
+    }
+EOD;
+  }//학년수정완료
+  else if($content == "반 수정"){
+    uphistory($user_key, $content);
+    $class = selectClass($user_key);
+    echo <<< EOD
+    {
+      "message":
+      {
+        "text" : "현재 $class 입니다. 몇반으로 변경하시겠습니까?"
+      },
+      "keyboard":
+      {
+        "type" : "buttons",
+        "buttons": ["1반", "2반", "3반", "4반", "5반", "6반", "7반", "8반", "9반", "10반", "11반", "12반", "13반", "14반", "15반", "16반", "메인으로"]
       }
     }
 EOD;
   }//반 수정 끝
+  else if(strpos($content, "반") && selecthistory($user_key) == "반 수정"){
+    $classtemp = selectClass($user_key);
+    insertClass($user_key ,$content);
+    $class = selectClass($user_key);
+    echo <<< EOD
+    {
+      "message":
+      {
+        "text": "소속반을 '$classtemp'에서 '$class'(으)로 변경하였습니다."
+      },
+      "keyboard":
+      {
+        "type" : "buttons",
+        "buttons" : ["전체내역 조회", "수정하기", "내 정보 지우기", "메인으로"]
+      }
+    }
+EOD;
+  }//반 수정 완료
   else if($content == "내 정보 지우기"){
     echo <<< EOD
     {
@@ -700,7 +771,19 @@ EOD;
     }
 EOD;
   }//정보지우기 -> 예 끝
+  else if($content == "자유 채팅"){
+    uphistory($user_key, $content);
+    echo<<<EOD
+    {
+      "message":
+      {
+        "text" : "자유 채팅입니다. 여러번 메뉴를 거치지 않고 바로 명령어를 실행시킬 수 있습니다. (ex. '오늘 중식'입력 시 오늘 점심메뉴 출력) \\n*탈출 시 <메인으로> 혹은 명령어 실행(ex. 오늘 중식)으로 탈출할 수 있습니다."
+      }
+    }
+EOD;
+  }
   else{
+    if(selecthistory($user_key)!=="자유 채팅"){
       echo <<< EOD
       {
         "message":
@@ -710,35 +793,14 @@ EOD;
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보"]
+          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
         }
       }
 EOD;
-    }//라스트 else 문 끝
-
-    /*else if(strpos($content, "-") !== false){
-      if(strpos($content, "남고") !== false){
-        $timetable = hstimetable($content);
-      }else if(strpos($content, "여고") !== false){
-        $result = strstr($content, "여고");
-        $timetable = ghstimetable($content);
-      }else if(strpos($content, "중교") !== false){
-        $result = strstr($content, "중교");
-        $timetable = mschtimetable($content);
-      }
-      echo <<< EOD
-      {
-        "message":
-        {
-          "text" : "$timetable"
-        },
-        "keyboard":
-        {
-          "type" : "buttons",
-          "buttons": ["급식식단", "학교별 메뉴", "Copyright", "버전정보"]
-        }
-      }
-EOD;
-}
-*/
+    }else if(selecthistory($user_key)=="자유 채팅"){
+        $rand = mt_rand(1,5);
+        $st_rand = (string)$rand;
+        egg($content, $st_rand);
+    }
+  }//라스트 else 문 끝
 ?>
