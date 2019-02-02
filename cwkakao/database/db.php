@@ -1,7 +1,7 @@
 <?php
 $ip = "localhost";
 $name = "cheongwon";//cwweb : 오픈베타 / cheongwon : 정식서비스
-$passwd = "Coeka3825c";
+$passwd = "";
 $connect = mysqli_connect($ip, $name, $passwd, $name);
 
 $q1 = "SET CHARSET UTF8";
