@@ -13,8 +13,8 @@
   include('./parse/mschedule.php');//중교학사일정
   include('./parse/Egg.php');
 
-  //$ret = firstdb($user_key);
-  $school;
+  $return = firstdb($user_key);
+  $school="";
   ckhistory($user_key);
   if($ret == 0){
     $school = selectSchool($user_key);
@@ -33,11 +33,10 @@
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
+          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
         }
       }
 EOD;
-      }
       }else if($return==1){
         $result=insertuserkey($user_key);
         uphistory($user_key, "초기학교");
@@ -55,6 +54,7 @@ EOD;
         }
 EOD;
       }//시작하기 끝
+    }
 else if(strpos($content, "학교") && selecthistory($user_key)=="초기학교"){
   switch ($content){
     case "청원고등학교":
@@ -168,7 +168,7 @@ uphistory($user_key, "초기반");
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
+          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
         }
       }
 EOD;
@@ -223,7 +223,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
           }
         }
 EOD;
@@ -238,7 +238,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
           }
         }
 EOD;
@@ -268,7 +268,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
           }
         }
 EOD;
@@ -284,7 +284,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
           }
         }
 EOD;
@@ -300,7 +300,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
           }
         }
 EOD;
@@ -316,7 +316,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
+            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
           }
         }
 EOD;
@@ -332,7 +332,7 @@ EOD;
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
+          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
         }
       }
 EOD;
@@ -348,7 +348,7 @@ EOD;
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
+          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
         }
       }
 EOD;
@@ -433,12 +433,12 @@ EOD;
       {
         "message":
         {
-          "text" : "현재 버전 : 2.4 \\n 청원 생활알리미는 청원학생들과 함께 만들어집니다! \\n 건의사항은 ms214@ms214.kr 이나 1:1 상담기능을 통해 알려주세요!\\n\\n*이번버전 업데이트 내역*\\n -아이디/이름 입력을 입력하시지 않으셔도 청원생활알리미를 이용할 수 있습니다!"
+          "text" : "현재 버전 : 2.5 \\n 청원 생활알리미는 청원학생들과 함께 만들어집니다! \\n 건의사항은 ms214@ms214.kr 이나 1:1 상담기능을 통해 알려주세요!\\n\\n*이번버전 업데이트 내역*\\n -공지사항메뉴 추가"
         },
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
+          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
         }
       }
 EOD;
@@ -491,7 +491,7 @@ EOD;
       if($school == "청원고"){
           $grade = selectGrade($user_key);
           $class = selectClass($user_key);
-          $result = timetable($school, $grade, $class, $content);
+          $result = timetable($school, $grade, $class, $condtent);
 
           echo <<< EOD
           {
@@ -782,6 +782,25 @@ EOD;
     }
 EOD;
   }
+  else if($content == "공지사항"){
+    echo<<<EOD
+    {
+      "message":
+      {
+        "text" : "*공지사항* \\n2월1일부로 여기와 플러스친구 홈에 공지사항이 게시 됩니다. 따로 단체메세지는 없습니다. \\n-2019.01.31-",
+        "message_button": {
+          "label": "플러스친구 홈",
+          "url": "http://pf.kakao.com/_xfSVWC"
+        }
+      },
+      "keyboard":
+      {
+        "type" : "buttons",
+        "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+      }
+    }
+EOD;
+  }
   else{
     if(selecthistory($user_key)!=="자유 채팅"){
       echo <<< EOD
@@ -793,7 +812,7 @@ EOD;
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "자유 채팅"]
+          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
         }
       }
 EOD;
