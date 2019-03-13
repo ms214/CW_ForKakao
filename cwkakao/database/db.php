@@ -114,10 +114,10 @@ mysqli_query($connect, $q1);
   }
 
   function timetable($school, $grade, $class ,$day){
-    $query = "SELECT timetable FROM timetable where school='$school' AND grade='$grade' AND class='$class' AND day='$day'";
+    $query = "SELECT * FROM timetable where school='$school' AND grade='$grade' AND class='$class' AND day='$day'";
     $conn = $GLOBALS['connect'];
     $result = mysqli_query($conn, $query);
-    $return = "저장된 시간표가 없습니다. \\n시간표등록시스템을 적용하기 위한 사이트 점검중입니다.";
+    $return = "저장된 시간표가 없습니다. \\n시간표 등록은 cw.ms214.kr 에서 등록해주세요";
     while($row = mysqli_fetch_array($result)){
         $return = $row['timetable'];
     }
