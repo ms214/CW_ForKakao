@@ -15,8 +15,8 @@
 
   $return = firstdb($user_key);
   $school="";
-  ckhistory($user_key);
-  if($ret == 0){
+  ckhistory($user_key);//히스토리에 user_key인 정보가 있나?
+  if($return == 0){
     $school = selectSchool($user_key);
   }
 
@@ -28,7 +28,7 @@
       {
         "message":
         {
-          "text" : "청원 생활알리미 봇을 시작합니다.\\n2019.03.03공지사항\\n청원고등학교와 청원여자고등학교 2019학사일정이 추가되었습니다. \\n학사일정오류는 ms214@ms214.kr로 신고바랍니다.\\n"
+          "text" : "청원 생활알리미 봇을 시작합니다.\\n2019.05.15공지사항\\n이스터..ㅇ..에그.. 우..웹에..서.."
         },
         "keyboard":
         {
@@ -173,7 +173,7 @@ uphistory($user_key, "초기반");
       }
 EOD;
   } //모든 회원정보 입력 끝
-  else if($content=="청원고"){
+  else if($content == "청원고"){
     echo '
     {
       "message":
@@ -218,7 +218,7 @@ EOD;
         {
           "message":
           {
-            "text" : "Copyright 2017-2018. 김민수 \\nAll Rights Reserved. \\n기타 도움: 여준호(급식파싱)"
+            "text" : "Copyright 2017-2019. 김민수 \\nAll Rights Reserved. \\n기타 도움: 여준호(급식파싱)"
           },
           "keyboard":
           {
@@ -228,7 +228,7 @@ EOD;
         }
 EOD;
     }//Copyright 끝
-      else if($content == "메인으로" || $content == "수정취소하기" || $content == "아니오"){
+      else if(strpos($content, "메인으로")!==false || $content == "수정취소하기" || $content == "아니오"){
         echo <<< EOD
         {
           "message":
@@ -243,7 +243,7 @@ EOD;
         }
 EOD;
     }//메인으로 끝
-    else if($content == "급식식단"){
+    else if(strpos($content, "급식")!==false){
       echo '
       {
         "message":
@@ -257,7 +257,7 @@ EOD;
         }
       }';
     }//급식식단 끝
-    else if($content == "오늘 중식" || $content == "오늘 점심"){
+    else if(strpos($content, "오늘 중식")!==false|| strpos($content, "오늘 점심")!==false){
         $meal = lfmeal(0);
         echo <<< EOD
         {
@@ -273,7 +273,7 @@ EOD;
         }
 EOD;
     }//오늘 중식 끝
-    else if($content == "오늘 석식" || $content == "오늘 저녁"){
+    else if(strpos($content, "오늘 석식")!==false || strpos($content, "오늘 저녁")!==false){
         $meal = dfmeal(0);
         echo <<< EOD
         {
@@ -433,7 +433,7 @@ EOD;
       {
         "message":
         {
-          "text" : "현재 버전 : 2.5.1 \\n 청원 생활알리미는 청원학생들과 함께 만들어집니다! \\n 건의사항은 ms214@ms214.kr 이나 1:1 상담기능을 통해 알려주세요!\\n\\n*이번버전 업데이트 내역*\\n -청원고, 청원여고 학사일정 추가"
+          "text" : "현재 버전 : 2.5.3 \\n 청원 생활알리미는 청원학생들과 함께 만들어집니다! \\n 건의사항은 ms214@ms214.kr 이나 1:1 상담기능을 통해 알려주세요!\\n\\n*이번버전 업데이트 내역*\\n -db코드 정리"
         },
         "keyboard":
         {
@@ -566,7 +566,7 @@ EOD;
         }else if($school == "청원중"){
           $sc = "중교";
         }
-        $out = $result[0].$result[1].$result[2].$result[3].$result[4].$result[5].$result[6].$result[7].$result[8].$result[9].$result[10].$result[11].$result[12].$result[13].$result[14].$result[15].$result[16].$result[17].$result[18].$result[19].$result[20].$result[21].$result[22].$result[23].$result[24].$result[25].$result[26].$result[28].$result[29].$result[30]."오류 신고바랍니다.";
+        $out = $result[0].$result[1].$result[2].$result[3].$result[4].$result[5].$result[6].$result[7].$result[8].$result[9].$result[10].$result[11].$result[12].$result[13].$result[14].$result[15].$result[16].$result[17].$result[18].$result[19].$result[20].$result[21].$result[22].$result[23].$result[24].$result[25].$result[26].$result[27].$result[28].$result[29].$result[30]."오류 신고바랍니다.";
         echo <<< EOD
         {
           "message":
@@ -646,7 +646,7 @@ EOD;
     }
 EOD;
   }//학교수정하기
-  else if(strpos($content, "학교") && selecthistory($user_key) == "학교 수정"){
+  else if(selecthistory($user_key) == "학교 수정"){
     $schooltemp = selectSchool($user_key);
     if($content == "청원고등학교"){
       insertSchool($user_key, "청원고");
@@ -787,7 +787,7 @@ EOD;
     {
       "message":
       {
-        "text" : "*공지사항* \\n청원고등학교와 청원여자고등학교 2019학사일정이 추가되었습니다. \\n학사일정오류는 ms214@ms214.kr로 신고바랍니다.\\n-2019.03.03-",
+        "text" : "*공지사항* \\n이스터..ㅇ..에그.. 우..웹에..서..\\n-2019.05.15-",
         "message_button": {
           "label": "플러스친구 홈",
           "url": "http://pf.kakao.com/_xfSVWC"

@@ -47,12 +47,13 @@ mysqli_query($connect, $q1);
     }
   }
 
+//user_key추가
   function insertuserkey($userkey){
-    $query = "INSERT INTO cheongwon (user_key, school, grade, class) VALUES ('$userkey', '청원고', '1', '11')";
+    $query = "INSERT INTO cheongwon (user_key, school, grade, class) VALUES ('$userkey', 'null', 'null', 'null')";
     $conn = $GLOBALS['connect'];
     $result = mysqli_query($conn, $query);
   }
-
+//school, grade, class추가
   function insertSchool($userkey, $school){
     $query = "UPDATE cheongwon set school = '$school' WHERE user_key = '$userkey'";
     $conn = $GLOBALS['connect'];
@@ -68,6 +69,7 @@ mysqli_query($connect, $q1);
     $conn = $GLOBALS['connect'];
     $result = mysqli_query($conn, $query);
   }
+  //학교 선택
   function selectSchool($userkey){
     $query = "SELECT * FROM cheongwon";
     $conn = $GLOBALS['connect'];
@@ -78,6 +80,8 @@ mysqli_query($connect, $q1);
       }
     }
   }
+
+  //학년 선택
   function selectGrade($userkey){
     $query = "SELECT * FROM cheongwon";
     $conn = $GLOBALS['connect'];
@@ -89,6 +93,7 @@ mysqli_query($connect, $q1);
     }
   }
 
+//반 선택
   function selectClass($userkey){
     $query = "SELECT * FROM cheongwon";
     $conn = $GLOBALS['connect'];
@@ -98,19 +103,6 @@ mysqli_query($connect, $q1);
         return $row['class'];
       }
     }
-  }
-
-  function selectname($userkey){
-    $query = "SELECT * FROM cheongwon where user_key = '$userkey'";
-    $conn = $GLOBALS['connect'];
-    $result = mysqli_query($conn, $query);
-    $row = mysqli_fetch_array($result);
-    return $row['name'];
-  }
-  function insertname($userkey, $name){
-    $query = "UPDATE cheongwon set name='$name' WHERE user_key='$userkey'";
-    $conn = $GLOBALS['connect'];
-    $result = mysqli_query($conn, $query);
   }
 
   function timetable($school, $grade, $class ,$day){
@@ -124,9 +116,37 @@ mysqli_query($connect, $q1);
     return $return;
   }//시간표 데이터베이스 통해
 
+  function easter_count($easter){
+    $now = date("Y-m-d H:i:s");
+    $query = "SELECT * FROM easter_egg where easter_cmd='$easter'";
+    $conn = $GLOBALS['connect'];
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+    if(!$row){
+      $query1 = "INSERT INTO easter_egg (easter_cmd, count, time_log) values('$easter', 1, '$now')";
+      $result1 = mysqli_query($conn, $query1);
+      return 1;
+    }else{
+      $count;
+      $query2 = "SELECT * FROM easter_egg where easter_cmd='$easter'";
+      $result2 = mysqli_query($conn, $query2);
+      while($row1 = mysqli_fetch_array($result2)){
+          $count = $row1['count'];
+      }
+      $count=$count+1;
+      $query = "UPDATE easter_egg set count='$count'where easter_cmd='$easter'";
+      mysqli_query($conn, $query);
+      $query = "UPDATE easter_egg set time_log='$now'where easter_cmd='$easter'";
+      mysqli_query($conn, $query);
+      return $count;
+    }
+  }
+
   function dropUser($userkey){
     $query = "DELETE FROM cheongwon WHERE user_key='".$userkey."'";
     $conn = $GLOBALS['connect'];
+    $result = mysqli_query($conn, $query);
+    $query = "DELETE FROM history WHERE user_key='".$userkey."'";
     $result = mysqli_query($conn, $query);
   }
 

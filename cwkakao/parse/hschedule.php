@@ -67,8 +67,8 @@
       $schedule[23] .="\\n";
       $schedule[24] .="중간고사\\n";
       $schedule[25] .="중간고사\\n";
-      $schedule[26] .="중간고사\\n";
-      $schedule[27] .="중간고사\\n";
+      $schedule[26] .="\\n";
+      $schedule[27] .="\\n";
       $schedule[28] .="중간고사\\n";
       $schedule[29] .="중간고사\\n";
       $schedule[30] ="";
