@@ -1,6 +1,6 @@
 <?php
 $ip = "localhost";
-$name = "cheongwon";//cwweb : 오픈베타 / cheongwon : 정식서비스
+$name = "cheongwon";
 $passwd = "";
 $connect = mysqli_connect($ip, $name, $passwd, $name);
 
@@ -140,6 +140,45 @@ mysqli_query($connect, $q1);
       mysqli_query($conn, $query);
       return $count;
     }
+  }
+
+//bus데이터베이스에 정보 존재여부확인
+  function ckuserbus($userkey){
+    $query = "SELECT * FROM bus where user_key='$userkey'";
+    $conn = $GLOBALS['connect'];
+    $result = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($result);
+
+    if(!$row){
+      //정보 없음
+      $query = "INSERT into bus (user_key, station_code) VALUES ('$userkey', 'null')";
+      $result = mysqli_query($conn, $query);
+      return "0";
+    }else{
+      //정보 있음
+      return "1";
+    }
+  }
+
+  function upuserbus($userkey, $station){
+    $query = "UPDATE bus set station_code='$station' WHERE user_key='$userkey'";
+    $conn = $GLOBALS['connect'];
+    $result = mysqli_query($conn, $query);
+  }
+
+  function selectbus($userkey){
+    $query = "SELECT station_code FROM bus where user_key='$userkey'";
+    $conn = $GLOBALS['connect'];
+    $result = mysqli_query($conn, $query);
+    while ($row = mysqli_fetch_array($result)){
+      return $row['station_code'];
+    }
+  }
+
+  function delbus($userkey){
+    $query = "DELETE from bus where user_key='$userkey'";
+    $conn = $GLOBALS['connect'];
+    $result = mysqli_query($conn, $query);
   }
 
   function dropUser($userkey){

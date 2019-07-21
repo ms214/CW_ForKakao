@@ -12,6 +12,7 @@
   include('./parse/ghschedule.php');//여고학사일정
   include('./parse/mschedule.php');//중교학사일정
   include('./parse/Egg.php');
+  include('./parse/bus.php');//버스도착정보
 
   $return = firstdb($user_key);
   $school="";
@@ -28,12 +29,12 @@
       {
         "message":
         {
-          "text" : "청원 생활알리미 봇을 시작합니다.\\n2019.05.15공지사항\\n이스터..ㅇ..에그.. 우..웹에..서.."
+          "text" : "청원 생활알리미 봇을 시작합니다.\\n2019.05.15공지사항\\n이스터에그는 웹에서 찾아보세요!"
         },
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+          "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
         }
       }
 EOD;
@@ -168,7 +169,7 @@ uphistory($user_key, "초기반");
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+          "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
         }
       }
 EOD;
@@ -218,12 +219,12 @@ EOD;
         {
           "message":
           {
-            "text" : "Copyright 2017-2019. 김민수 \\nAll Rights Reserved. \\n기타 도움: 여준호(급식파싱)"
+            "text" : "Copyright 2017-2019. 김민수 \\nAll Rights Reserved."
           },
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+            "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
           }
         }
 EOD;
@@ -238,7 +239,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+            "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
           }
         }
 EOD;
@@ -268,7 +269,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+            "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
           }
         }
 EOD;
@@ -284,7 +285,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+            "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
           }
         }
 EOD;
@@ -300,7 +301,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+            "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
           }
         }
 EOD;
@@ -316,7 +317,7 @@ EOD;
           "keyboard":
           {
             "type" : "buttons",
-            "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+            "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
           }
         }
 EOD;
@@ -332,7 +333,7 @@ EOD;
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+          "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
         }
       }
 EOD;
@@ -348,7 +349,7 @@ EOD;
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+          "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
         }
       }
 EOD;
@@ -433,12 +434,12 @@ EOD;
       {
         "message":
         {
-          "text" : "현재 버전 : 2.5.3 \\n 청원 생활알리미는 청원학생들과 함께 만들어집니다! \\n 건의사항은 ms214@ms214.kr 이나 1:1 상담기능을 통해 알려주세요!\\n\\n*이번버전 업데이트 내역*\\n -db코드 정리"
+          "text" : "현재 버전 : 2.6.1 \\n 청원 생활알리미는 청원학생들과 함께 만들어집니다! \\n 건의사항은 ms214@ms214.kr 이나 1:1 상담기능을 통해 알려주세요!\\n\\n*이번버전 업데이트 내역*\\n -버스도착정보메뉴 추가 수정\\n -버스 선호정류장 정보 지우기 기능 추가"
         },
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+          "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
         }
       }
 EOD;
@@ -592,7 +593,7 @@ EOD;
       "keyboard":
       {
         "type" : "buttons",
-        "buttons": ["전체내역 조회", "수정하기", "내 정보 지우기", "메인으로"]
+        "buttons": ["전체내역 조회", "수정하기", "내 정보 지우기", "선호버스정류장 정보 지우기", "메인으로"]
       }
     }
 EOD;
@@ -787,19 +788,460 @@ EOD;
     {
       "message":
       {
-        "text" : "*공지사항* \\n이스터..ㅇ..에그.. 우..웹에..서..\\n-2019.05.15-",
-        "message_button": {
-          "label": "플러스친구 홈",
-          "url": "http://pf.kakao.com/_xfSVWC"
+        "text" : "*공지사항* \\n이스터에그는 웹에서 찾아보세요!\\n-2019.07.01-",
+        "message_button":
+        {
+          "label": "웹페이지로 가보기",
+          "url": "http://cw.ms214.kr/"
         }
       },
       "keyboard":
       {
         "type" : "buttons",
-        "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+        "buttons": ["급식식단", "$school", "버스도착정보","마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
       }
     }
 EOD;
+  }
+  else if($content == "버스도착정보"){
+    $return = ckuserbus($user_key);
+    if($return == "0"){
+      //bus db에 회원정보 없음
+      uphistory($user_key, "bus db추가");
+      echo <<< EOD
+      {
+        "message":
+        {
+          "text" : "회원님의 선호버스정류장 정보가 없습니다. 정보 등록을 시작합니다.(이 과정은 초기에만 실행됩니다.) \\n정문쪽과 후문쪽과 보람아파트쪽 정류장 중 선택하세요"
+        },
+        "keyboard":
+        {
+          "type" : "buttons",
+          "buttons": ["정문쪽", "후문쪽", "보람아파트쪽"]
+        }
+      }
+EOD;
+    }else{
+      $station = selectbus($user_key);
+      $busname=array();
+      $nextbus1=array();
+      $nextbus2=array();
+      $busname = showbusname($station);
+      $nextbus1 = showbusnext1($station);
+      $nextbus2 = showbusnext2($station);
+      $stationname = showstationname($station);
+      $name = $stationname[0];
+      $where = $stationname[1];
+      $length = count($busname);
+      $show="";
+      uphistory($user_key, "bus 정류장");
+      //bus db에 회원정보 있음
+      for($i=0; $i<$length; $i++){
+        $show .=$busname[$i]."\\n ".$nextbus1[$i]."\\n ".$nextbus2[$i]."\\n\\n";
+      }
+      echo <<< EOD
+      {
+      "message":
+      {
+        "text": "회원님이 선택한 위치($name, $where 방면)에 대한 모든 버스 정보입니다. \\n\\n$show \\n정보삭제는 마이페이지에서 삭제하실 수 있습니다. 수정은 추후 추가될 예정입니다."
+      },
+      "keyboard":
+      {
+        "type" : "buttons",
+        "buttons": ["청원고등학교_노원08_상계주공8,9단지", "청원고등학교_노원08_상계주공12단지1202동방면", "청원고등학교_1137,1143_보람아파트1단지방면", "청원고등학교_1137,1143_상계주공12단지1202동방면", "청원고등학교후문_노원02,11_상계주공13단지방면", "청원고등학교후문_노원02,05,11_상원초등학교방면", "상계주공13단지_노원02,11_보람아파트정문방면", "상게주공13단지_노원02,05,11_청원고등학교후문방면", "메인으로"]
+      }
+    }
+EOD;
+
+    }
+  }
+  else if($content == "청원고등학교_노원08_상계주공8,9단지" && selecthistory($user_key) == "bus 정류장"){
+    $station = "11537";
+    $busname = array();
+    $nextbus1=array();
+    $nextbus2=array();
+    $busname = showbusname($station);
+    $nextbus1 = showbusnext1($station);
+    $nextbus2 = showbusnext2($station);
+    $stationname = showstationname($station);
+    $name = $stationname[0];
+    $where = $stationname[1];
+    $length = count($busname);
+    $show="";
+    uphistory($user_key, "bus 정류장");
+    for($i=0; $i<$length; $i++){
+      $show .=$busname[$i]."\\n ".$nextbus1[$i]."\\n ".$nextbus2[$i]."\\n\\n";
+    }
+    echo <<< EOD
+    {
+    "message":
+    {
+      "text": "회원님이 선택한 위치($name, $where 방면)에 대한 모든 버스 정보입니다. \\n\\n$show"
+    },
+    "keyboard":
+    {
+      "type" : "buttons",
+      "buttons": ["청원고등학교_노원08_상계주공8,9단지", "청원고등학교_노원08_상계주공12단지1202동방면", "청원고등학교_1137,1143_보람아파트1단지방면", "청원고등학교_1137,1143_상계주공12단지1202동방면", "청원고등학교후문_노원02,11_상계주공13단지방면", "청원고등학교후문_노원02,05,11_상원초등학교방면", "상계주공13단지_노원02,11_보람아파트정문방면", "상게주공13단지_노원02,05,11_청원고등학교후문방면", "메인으로"]
+    }
+  }
+EOD;
+  }
+  else if($content == "청원고등학교_노원08_상계주공12단지1202동방면" && selecthistory($user_key) == "bus 정류장"){
+    $station = "11847";
+    $busname = array();
+    $nextbus1=array();
+    $nextbus2=array();
+    $busname = showbusname($station);
+    $nextbus1 = showbusnext1($station);
+    $nextbus2 = showbusnext2($station);
+    $stationname = showstationname($station);
+    $name = $stationname[0];
+    $where = $stationname[1];
+    $length = count($busname);
+    $show="";
+    uphistory($user_key, "bus 정류장");
+    for($i=0; $i<$length; $i++){
+      $show .=$busname[$i]."\\n ".$nextbus1[$i]."\\n ".$nextbus2[$i]."\\n\\n";
+    }
+    echo <<< EOD
+    {
+    "message":
+    {
+      "text": "회원님이 선택한 위치($name, $where 방면)에 대한 모든 버스 정보입니다. \\n\\n$show"
+    },
+    "keyboard":
+    {
+      "type" : "buttons",
+      "buttons": ["청원고등학교_노원08_상계주공8,9단지", "청원고등학교_노원08_상계주공12단지1202동방면", "청원고등학교_1137,1143_보람아파트1단지방면", "청원고등학교_1137,1143_상계주공12단지1202동방면", "청원고등학교후문_노원02,11_상계주공13단지방면", "청원고등학교후문_노원02,05,11_상원초등학교방면", "상계주공13단지_노원02,11_보람아파트정문방면", "상게주공13단지_노원02,05,11_청원고등학교후문방면", "메인으로"]
+    }
+  }
+EOD;
+  }
+  else if($content == "청원고등학교_1137,1143_보람아파트1단지방면" && selecthistory($user_key) == "bus 정류장"){
+    $station = "11190";
+    $busname = array();
+    $nextbus1=array();
+    $nextbus2=array();
+    $busname = showbusname($station);
+    $nextbus1 = showbusnext1($station);
+    $nextbus2 = showbusnext2($station);
+    $stationname = showstationname($station);
+    $name = $stationname[0];
+    $where = $stationname[1];
+    $length = count($busname);
+    $show="";
+    uphistory($user_key, "bus 정류장");
+    for($i=0; $i<$length; $i++){
+      $show .=$busname[$i]."\\n ".$nextbus1[$i]."\\n ".$nextbus2[$i]."\\n\\n";
+    }
+    echo <<< EOD
+    {
+    "message":
+    {
+      "text": "회원님이 선택한 위치($name, $where 방면)에 대한 모든 버스 정보입니다. \\n\\n$show"
+    },
+    "keyboard":
+    {
+      "type" : "buttons",
+      "buttons": ["청원고등학교_노원08_상계주공8,9단지", "청원고등학교_노원08_상계주공12단지1202동방면", "청원고등학교_1137,1143_보람아파트1단지방면", "청원고등학교_1137,1143_상계주공12단지1202동방면", "청원고등학교후문_노원02,11_상계주공13단지방면", "청원고등학교후문_노원02,05,11_상원초등학교방면", "상계주공13단지_노원02,11_보람아파트정문방면", "상게주공13단지_노원02,05,11_청원고등학교후문방면", "메인으로"]
+    }
+  }
+EOD;
+  }
+  else if($content == "청원고등학교_1137,1143_상계주공12단지1202동방면" && selecthistory($user_key) == "bus 정류장"){
+    $station = "11276";
+    $busname = array();
+    $nextbus1=array();
+    $nextbus2=array();
+    $busname = showbusname($station);
+    $nextbus1 = showbusnext1($station);
+    $nextbus2 = showbusnext2($station);
+    $stationname = showstationname($station);
+    $name = $stationname[0];
+    $where = $stationname[1];
+    $length = count($busname);
+    $show="";
+    uphistory($user_key, "bus 정류장");
+    for($i=0; $i<$length; $i++){
+      $show .=$busname[$i]."\\n ".$nextbus1[$i]."\\n ".$nextbus2[$i]."\\n\\n";
+    }
+    echo <<< EOD
+    {
+    "message":
+    {
+      "text": "회원님이 선택한 위치($name, $where 방면)에 대한 모든 버스 정보입니다. \\n\\n$show"
+    },
+    "keyboard":
+    {
+      "type" : "buttons",
+      "buttons": ["청원고등학교_노원08_상계주공8,9단지", "청원고등학교_노원08_상계주공12단지1202동방면", "청원고등학교_1137,1143_보람아파트1단지방면", "청원고등학교_1137,1143_상계주공12단지1202동방면", "청원고등학교후문_노원02,11_상계주공13단지방면", "청원고등학교후문_노원02,05,11_상원초등학교방면", "상계주공13단지_노원02,11_보람아파트정문방면", "상게주공13단지_노원02,05,11_청원고등학교후문방면", "메인으로"]
+    }
+  }
+EOD;
+  }
+  else if($content == "청원고등학교후문_노원02,11_상계주공13단지방면" && selecthistory($user_key) == "bus 정류장"){
+    $station = "11553";
+    $busname = array();
+    $nextbus1=array();
+    $nextbus2=array();
+    $busname = showbusname($station);
+    $nextbus1 = showbusnext1($station);
+    $nextbus2 = showbusnext2($station);
+    $stationname = showstationname($station);
+    $name = $stationname[0];
+    $where = $stationname[1];
+    $length = count($busname);
+    $show="";
+    uphistory($user_key, "bus 정류장");
+    for($i=0; $i<$length; $i++){
+      $show .=$busname[$i]."\\n ".$nextbus1[$i]."\\n ".$nextbus2[$i]."\\n\\n";
+    }
+    echo <<< EOD
+    {
+    "message":
+    {
+      "text": "회원님이 선택한 위치($name, $where 방면)에 대한 모든 버스 정보입니다. \\n\\n$show"
+    },
+    "keyboard":
+    {
+      "type" : "buttons",
+      "buttons": ["청원고등학교_노원08_상계주공8,9단지", "청원고등학교_노원08_상계주공12단지1202동방면", "청원고등학교_1137,1143_보람아파트1단지방면", "청원고등학교_1137,1143_상계주공12단지1202동방면", "청원고등학교후문_노원02,11_상계주공13단지방면", "청원고등학교후문_노원02,05,11_상원초등학교방면", "상계주공13단지_노원02,11_보람아파트정문방면", "상게주공13단지_노원02,05,11_청원고등학교후문방면", "메인으로"]
+    }
+  }
+EOD;
+  }
+  else if($content == "청원고등학교후문_노원02,05,11_상원초등학교방면" && selecthistory($user_key) == "bus 정류장"){
+    $station = "11868";
+    $busname = array();
+    $nextbus1=array();
+    $nextbus2=array();
+    $busname = showbusname($station);
+    $nextbus1 = showbusnext1($station);
+    $nextbus2 = showbusnext2($station);
+    $stationname = showstationname($station);
+    $name = $stationname[0];
+    $where = $stationname[1];
+    $length = count($busname);
+    $show="";
+    uphistory($user_key, "bus 정류장");
+    for($i=0; $i<$length; $i++){
+      $show .=$busname[$i]."\\n ".$nextbus1[$i]."\\n ".$nextbus2[$i]."\\n\\n";
+    }
+    echo <<< EOD
+    {
+    "message":
+    {
+      "text": "회원님이 선택한 위치($name, $where 방면)에 대한 모든 버스 정보입니다. \\n\\n$show"
+    },
+    "keyboard":
+    {
+      "type" : "buttons",
+      "buttons": ["청원고등학교_노원08_상계주공8,9단지", "청원고등학교_노원08_상계주공12단지1202동방면", "청원고등학교_1137,1143_보람아파트1단지방면", "청원고등학교_1137,1143_상계주공12단지1202동방면", "청원고등학교후문_노원02,11_상계주공13단지방면", "청원고등학교후문_노원02,05,11_상원초등학교방면", "상계주공13단지_노원02,11_보람아파트정문방면", "상게주공13단지_노원02,05,11_청원고등학교후문방면", "메인으로"]
+    }
+  }
+EOD;
+  }
+  else if($content == "상계주공13단지_노원02,11_보람아파트정문방면" && selecthistory($user_key) == "bus 정류장"){
+    $station = "11560";
+    $busname = array();
+    $nextbus1=array();
+    $nextbus2=array();
+    $busname = showbusname($station);
+    $nextbus1 = showbusnext1($station);
+    $nextbus2 = showbusnext2($station);
+    $stationname = showstationname($station);
+    $name = $stationname[0];
+    $where = $stationname[1];
+    $length = count($busname);
+    $show="";
+    uphistory($user_key, "bus 정류장");
+    for($i=0; $i<$length; $i++){
+      $show .=$busname[$i]."\\n ".$nextbus1[$i]."\\n ".$nextbus2[$i]."\\n\\n";
+    }
+    echo <<< EOD
+    {
+    "message":
+    {
+      "text": "회원님이 선택한 위치($name, $where 방면)에 대한 모든 버스 정보입니다. \\n\\n$show"
+    },
+    "keyboard":
+    {
+      "type" : "buttons",
+      "buttons": ["청원고등학교_노원08_상계주공8,9단지", "청원고등학교_노원08_상계주공12단지1202동방면", "청원고등학교_1137,1143_보람아파트1단지방면", "청원고등학교_1137,1143_상계주공12단지1202동방면", "청원고등학교후문_노원02,11_상계주공13단지방면", "청원고등학교후문_노원02,05,11_상원초등학교방면", "상계주공13단지_노원02,11_보람아파트정문방면", "상게주공13단지_노원02,05,11_청원고등학교후문방면", "메인으로"]
+    }
+  }
+EOD;
+  }
+  else if($content == "상게주공13단지_노원02,05,11_청원고등학교후문방면" && selecthistory($user_key) == "bus 정류장"){
+    $station = "11819";
+    $busname = array();
+    $nextbus1=array();
+    $nextbus2=array();
+    $busname = showbusname($station);
+    $nextbus1 = showbusnext1($station);
+    $nextbus2 = showbusnext2($station);
+    $stationname = showstationname($station);
+    $name = $stationname[0];
+    $where = $stationname[1];
+    $length = count($busname);
+    $show="";
+    uphistory($user_key, "bus 정류장");
+    for($i=0; $i<$length; $i++){
+      $show .=$busname[$i]."\\n ".$nextbus1[$i]."\\n ".$nextbus2[$i]."\\n\\n";
+    }
+    echo <<< EOD
+    {
+    "message":
+    {
+      "text": "회원님이 선택한 위치($name, $where 방면)에 대한 모든 버스 정보입니다. \\n\\n$show"
+    },
+    "keyboard":
+    {
+      "type" : "buttons",
+      "buttons": ["청원고등학교_노원08_상계주공8,9단지", "청원고등학교_노원08_상계주공12단지1202동방면", "청원고등학교_1137,1143_보람아파트1단지방면", "청원고등학교_1137,1143_상계주공12단지1202동방면", "청원고등학교후문_노원02,11_상계주공13단지방면", "청원고등학교후문_노원02,05,11_상원초등학교방면", "상계주공13단지_노원02,11_보람아파트정문방면", "상게주공13단지_노원02,05,11_청원고등학교후문방면", "메인으로"]
+    }
+  }
+EOD;
+  }
+  else if($content == "정문쪽" && selecthistory($user_key) == "bus db추가"){
+    echo <<< EOD
+    {
+      "message":
+      {
+        "text" : "정문쪽 다음 이미지를 보고 정류소 번호를 선택하세요",
+        "photo": {
+          "url": "http://cheongwon.dothome.co.kr/1_kakao/img/front.jpg",
+          "width": 640,
+          "height": 480
+        }
+      },
+      "keyboard":
+      {
+        "type": "buttons",
+        "buttons": ["1번", "2번", "3번", "4번"]
+      }
+    }
+EOD;
+  uphistory($user_key, "버스정문");
+  }
+  else if($content == "후문쪽" && selecthistory($user_key) == "bus db추가"){
+    echo <<< EOD
+    {
+      "message":
+      {
+        "text" : "후문쪽 다음 이미지를 보고 정류소 번호를 선택하세요",
+        "photo":{
+          "url": "http://cheongwon.dothome.co.kr/1_kakao/img/back.jpg",
+          "width": 640,
+          "height": 480
+        }
+      },
+      "keyboard":
+      {
+        "type": "buttons",
+        "buttons": ["1번", "2번"]
+      }
+    }
+EOD;
+  uphistory($user_key, "버스후문");
+  }
+  else if($content == "보람아파트쪽" && selecthistory($user_key) == "bus db추가"){
+    echo <<< EOD
+    {
+      "message":
+      {
+        "text" : "보람아파트쪽 다음 이미지를 보고 정류소 번호를 선택하세요",
+        "photo":{
+          "url": "http://cheongwon.dothome.co.kr/1_kakao/img/boram.jpg",
+          "width": 640,
+          "height": 480
+        }
+      },
+      "keyboard":
+      {
+        "type": "buttons",
+        "buttons": ["1번", "2번"]
+      }
+    }
+EOD;
+  uphistory($user_key, "버스보람아파트");
+  }
+  else if($content == "1번" || $content == "2번" || $content == "3번" || $content == "4번"){
+    switch (selecthistory($user_key)) {
+      case '버스정문':
+        if($content == "1번"){
+          upuserbus($user_key, "11537");
+        }else if($content == "2번"){
+          upuserbus($user_key, "11847");
+        }else if($content == "3번"){
+          upuserbus($user_key, "11190");
+        }else if($content == "4번"){
+          upuserbus($user_key, "11276");
+        }
+        break;
+
+        case '버스후문':
+          if($content == "1번"){
+            upuserbus($user_key, "11553");
+          }else if($content == "2번"){
+            upuserbus($user_key, "11868");
+          }
+          break;
+
+        case '버스보람아파트':
+          if($content == "1번"){
+            upuserbus($user_key, "11560");
+          }else if($content == "2번"){
+            upuserbus($user_key, "11819");
+          }
+          break;
+
+      default:
+        echo <<< EOD
+        {
+          "message":
+          {
+            "text": "잘못된 정보입니다."
+          },
+          "keyboard":
+          {
+              "type": "buttons",
+              "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+          }
+        }
+EOD;
+        break;
+    }
+    echo <<< EOD
+    {
+      "message":
+      {
+        "text": "앞으로 해당정류장에 대한 정보가 제공될 예정입니다. 감사합니다. 메인메뉴로 갑니다."
+      },
+      "keyboard":
+      {
+        "type": "buttons",
+        "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+      }
+    }
+EOD;
+  }
+  else if($content == "선호버스정류장 정보 지우기"){
+    delbus($user_key);
+    echo <<< EOD
+    {
+      "message":
+      {
+        "text": "선호버스정류장 정보를 삭제했습니다. 감사합니다."
+      },
+      "keyboard":
+      {
+        "type": "buttons",
+        "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+      }
+    }
+EOD;
+
   }
   else{
     if(selecthistory($user_key)!=="자유 채팅"){
@@ -812,7 +1254,7 @@ EOD;
         "keyboard":
         {
           "type" : "buttons",
-          "buttons": ["급식식단", "$school", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+          "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
         }
       }
 EOD;
