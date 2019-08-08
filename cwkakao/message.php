@@ -159,12 +159,25 @@ uphistory($user_key, "초기반");
       insertClass($user_key, "16반");
       break;
   }
-  $school = selectSchool($user_key);
+    if(selectrecommender($user_key)==0){
+      createrecommender($user_key);
       echo <<< EOD
       {
         "message":
         {
-          "text" : "회원정보를 모두 입력하였습니다. 메인으로 돌아갑니다."
+          "text" : "추천인을 입력해주세요. 추천인이 없을 경우 '없음'을 입력해주세요"
+        }
+      }
+EOD;
+    uphistory($user_key, "추천인");
+    }
+    else{
+      $school = selectSchool($user_key);
+      echo <<< EOD
+      {
+        "message":
+        {
+          "text" : "모든 정보가 입력되었습니다. 메인으로 돌아갑니다."
         },
         "keyboard":
         {
@@ -173,7 +186,42 @@ uphistory($user_key, "초기반");
         }
       }
 EOD;
-  } //모든 회원정보 입력 끝
+    }
+  }
+  else if(strpos($content, "없음")!== false){
+    $school = selectSchool($user_key);
+    echo <<< EOD
+    {
+      "message":
+      {
+        "text" : "모든 정보가 입력되었습니다. 메인으로 돌아갑니다."
+      },
+      "keyboard":
+      {
+        "type" : "buttons",
+        "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+      }
+    }
+EOD;
+  }
+  else if(selecthistory($user_key) == "추천인"){
+    $school = selectSchool($user_key);
+    recommender($user_key, $content);
+    uphistory($user_key, "");
+    echo <<< EOD
+    {
+      "message":
+      {
+        "text" : "추천인: $content \\n모든 정보가 입력되었습니다. 메인으로 돌아갑니다."
+      },
+      "keyboard":
+      {
+        "type" : "buttons",
+        "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
+      }
+    }
+EOD;
+  }//모든 회원정보 입력 끝
   else if($content == "청원고"){
     echo '
     {
@@ -434,7 +482,7 @@ EOD;
       {
         "message":
         {
-          "text" : "현재 버전 : 2.6.1 \\n 청원 생활알리미는 청원학생들과 함께 만들어집니다! \\n 건의사항은 ms214@ms214.kr 이나 1:1 상담기능을 통해 알려주세요!\\n\\n*이번버전 업데이트 내역*\\n -버스도착정보메뉴 추가 수정\\n -버스 선호정류장 정보 지우기 기능 추가"
+          "text" : "현재 버전 : 2.6.2 \\n 청원 생활알리미는 청원학생들과 함께 만들어집니다! \\n 건의사항은 ms214@ms214.kr 이나 1:1 상담기능을 통해 알려주세요!\\n\\n*이번버전 업데이트 내역*\\n -추천인 입력 가능"
         },
         "keyboard":
         {

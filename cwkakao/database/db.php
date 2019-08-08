@@ -1,7 +1,7 @@
 <?php
 $ip = "localhost";
 $name = "cheongwon";
-$passwd = "";
+$passwd = "Coeka3825c";
 $connect = mysqli_connect($ip, $name, $passwd, $name);
 
 $q1 = "SET CHARSET UTF8";
@@ -50,6 +50,28 @@ mysqli_query($connect, $q1);
 //user_key추가
   function insertuserkey($userkey){
     $query = "INSERT INTO cheongwon (user_key, school, grade, class) VALUES ('$userkey', 'null', 'null', 'null')";
+    $conn = $GLOBALS['connect'];
+    $result = mysqli_query($conn, $query);
+  }
+  function selectrecommender($userkey){
+    $query = "SELECT * FROM recommender where user_key = '$userkey'";
+    $conn = $GLOBALS['connect'];
+    $result = mysqli_query($conn, $query);
+    $row =  mysqli_fetch_assoc($result);
+    if(!$row){
+      return 0;
+      //$userkey에 대한 내용이 없다.
+    }else{
+      return 1;
+    }
+  }
+  function createrecommender($userkey){
+    $query = "INSERT INTO recommender (user_key, recommender) VALUES ('$userkey', 'NULL')";
+    $conn = $GLOBALS['connect'];
+    $result = mysqli_query($conn, $query);
+  }
+  function recommender($userkey, $recommender){
+    $query = "UPDATE recommender set recommender = '$recommender' WHERE user_key='$userkey'";
     $conn = $GLOBALS['connect'];
     $result = mysqli_query($conn, $query);
   }
