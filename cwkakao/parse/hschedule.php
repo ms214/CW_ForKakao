@@ -216,7 +216,7 @@
       $schedule[2] .="\\n";
       $schedule[3] .="전국연합학력평가\\n";
       $schedule[4] .="\\n";
-      $schedule[5] .="\\n";
+      $schedule[5] .="청원여울마당\\n";
       $schedule[6] .="\\n";
       $schedule[7] .="\\n";
       $schedule[8] .="\\n";

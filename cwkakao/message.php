@@ -11,7 +11,7 @@
   include('./parse/hschedule.php');//남고학사일정
   include('./parse/ghschedule.php');//여고학사일정
   include('./parse/mschedule.php');//중교학사일정
-  include('./parse/Egg.php');
+  //include('./parse/Egg.php');
   include('./parse/bus.php');//버스도착정보
 
   $return = firstdb($user_key);
@@ -159,37 +159,25 @@ uphistory($user_key, "초기반");
       insertClass($user_key, "16반");
       break;
   }
-    if(selectrecommender($user_key)==0){
-      createrecommender($user_key);
-      echo <<< EOD
+    $school = selectSchool($user_key);
+    echo <<< EOD
+    {
+      "message":
       {
-        "message":
-        {
-          "text" : "추천인을 입력해주세요. 추천인이 없을 경우 '없음'을 입력해주세요"
-        }
-      }
-EOD;
-    uphistory($user_key, "추천인");
-    }
-    else{
-      $school = selectSchool($user_key);
-      echo <<< EOD
+        "text" : "모든 정보가 입력되었습니다. 메인으로 돌아갑니다."
+      },
+      "keyboard":
       {
-        "message":
-        {
-          "text" : "모든 정보가 입력되었습니다. 메인으로 돌아갑니다."
-        },
-        "keyboard":
-        {
-          "type" : "buttons",
-          "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
-        }
+        "type" : "buttons",
+        "buttons": ["급식식단", "$school", "버스도착정보", "마이페이지", "Copyright", "버전정보", "공지사항", "자유 채팅"]
       }
-EOD;
     }
+EOD;
+
   }
   else if(strpos($content, "없음")!== false){
     $school = selectSchool($user_key);
+    uphistory($user_key, "");
     echo <<< EOD
     {
       "message":
@@ -291,6 +279,7 @@ EOD;
           }
         }
 EOD;
+    uphistory($user_key, " ");
     }//메인으로 끝
     else if(strpos($content, "급식")!==false){
       echo '
@@ -482,7 +471,7 @@ EOD;
       {
         "message":
         {
-          "text" : "현재 버전 : 2.6.2 \\n 청원 생활알리미는 청원학생들과 함께 만들어집니다! \\n 건의사항은 ms214@ms214.kr 이나 1:1 상담기능을 통해 알려주세요!\\n\\n*이번버전 업데이트 내역*\\n -추천인 입력 가능"
+          "text" : "현재 버전 : 2.6.3 \\n 청원 생활알리미는 청원학생들과 함께 만들어집니다! \\n 건의사항은 ms214@ms214.kr 이나 1:1 상담기능을 통해 알려주세요!\\n\\n*이번버전 업데이트 내역*\\n -추천인 이벤트 종료로 추천인 입력 삭제"
         },
         "keyboard":
         {
@@ -665,6 +654,7 @@ EOD;
 EOD;
   }//전체내역조회 끝
   else if($content == "수정하기"){
+    uphistory($user_key, " ");
     echo <<< EOD
     {
       "message":

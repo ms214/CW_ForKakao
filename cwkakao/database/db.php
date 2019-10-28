@@ -1,7 +1,7 @@
 <?php
 $ip = "localhost";
-$name = "cheongwon";
-$passwd = "Coeka3825c";
+$name = "cwkakao";
+$passwd = "";
 $connect = mysqli_connect($ip, $name, $passwd, $name);
 
 $q1 = "SET CHARSET UTF8";
